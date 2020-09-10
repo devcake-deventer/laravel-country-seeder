@@ -1,0 +1,25 @@
+{
+    "name": "devcake-deventer/country-seeder",
+    "description": "This package can be used within laravel to seed a dutch translated country table to the database",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mike Slinkman",
+            "email": "m.slinkman@devcake.nl"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Devcake\\CountrySeeder\\":"src/"
+        }
+    },
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Devcake\\CountrySeeder\\CountrySeederServiceProvider"
+            ]
+        }
+    }
+}
