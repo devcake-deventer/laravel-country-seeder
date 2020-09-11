@@ -24,7 +24,7 @@ class CreateCountriesTable extends Migration
 
     public function getTableName()
     {
-        return config('CountrySeeder.table_name');
+        return config('CountrySeeder.country_table_name');
     }
 
     /**

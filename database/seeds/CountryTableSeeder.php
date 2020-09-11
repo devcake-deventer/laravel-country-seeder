@@ -8,7 +8,7 @@ class CountryTableSeeder extends BaseSeeder
 
     protected function getTable(): string
     {
-        return config('CountrySeeder.table_name');
+        return config('CountrySeeder.country_table_name');
     }
 
     protected function  seeds():array
