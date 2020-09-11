@@ -7,7 +7,7 @@ This package comes with a simple base seeder used within most of our projects. I
 ## Usage
 There are several ways on how to use this package, the default behavior is configured to place all files (migrations, seeders and base seeder) into your project. We also offer solutions to customize the files copied to your project.
 
-1. Install this package: `composer require devcake-deventer/country-sseder`
+1. Install this package: `composer require devcake-deventer/country-seeder`
 2. Publish the configuration: `php artisan vendor:publish --tag=$required-tag`
 3. Change the config as desired
 4. php artisan db:seed
