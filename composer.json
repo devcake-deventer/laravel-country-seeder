@@ -1,6 +1,6 @@
 {
     "name": "devcake-deventer/country-seeder",
-    "version": "0.2",
+    "version": "0.2.2",
     "description": "This package can be used within laravel to seed a dutch translated country table to the database",
     "type": "library",
     "license": "MIT",
@@ -15,7 +15,11 @@
             "Devcake\\CountrySeeder\\":"src/"
         }
     },
-    "require": {},
+    "require": {
+      "php": "^7.0",
+      "illuminate/seeder": "^7.0.0",
+      "illuminate/support": "^7.0.0",
+    },
     "extra": {
         "laravel": {
             "providers": [
