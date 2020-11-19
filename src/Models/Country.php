@@ -10,6 +10,6 @@ class Country extends Model
 
     public function getTable()
     {
-        return config('CountrySeeder.table_name');
+        return config('country.countries.table');
     }
 }

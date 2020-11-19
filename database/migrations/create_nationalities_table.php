@@ -6,34 +6,29 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateNationalitiesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create($this->getTableName(), function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('code');
-            $table->longText('nationality');
-            $table->timestamps();
-        });
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::create(config('country.nationalities.table'), function (Blueprint $table) {
+			$table->integer('id');
+			$table->string(config('country.nationalities.columns.code'));
+			$table->string(config('country.nationalities.columns.name'));
+			$table->timestamps();
+		});
 
-    }
+	}
 
-    public function getTableName()
-    {
-        return config('country.nationalities_table_name');
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists($this->getTableName());
-    }
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::dropIfExists(config('country.nationalities.table'));
+	}
 }
