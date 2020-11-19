@@ -10,7 +10,7 @@ use Devcake\CountrySeeder\CountrySeederServiceProvider;
 abstract class TestCase extends \Orchestra\Testbench\TestCase {
 	const DB = __DIR__ . '/database.sqlite';
 
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 		touch(self::DB);
 		(new \CreateCountriesTable())->up();
@@ -40,7 +40,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase {
 		return [CountrySeederServiceProvider::class];
 	}
 
-	protected function tearDown() {
+	protected function tearDown(): void {
 		parent::tearDown();
 		unlink(self::DB);
 	}
