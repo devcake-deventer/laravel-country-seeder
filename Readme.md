@@ -13,10 +13,14 @@ There are several ways on how to use this package, the default behavior is confi
 4. php artisan db:seed
 
 ## Configurable properties
+The configuration sections for countries and nationalities are identical, so only the country version is explained below. 
+
 |Key|Default|Description|
 |---|---|---|
-|`country_table_name`|countries| Name of the table to seed countries in|
-|`nationalities_table_name`|nationalities|Name of the table to seed nationalities in
+|`countries.sync`|`true`| Indicates if database entries be kept in sync with the seeder (`true`) or only new entries be inserted (`false`) |
+|`countries.table`|`"countries"`| Name of the database table |
+|`countries.columns.code`|`"code"`| Name of the code column in the database |
+|`countries.columns.name`|`"name"`| Name of the name column in the database |
 
 ## Available tags
 We provide 4 different tags to publish required files to your project. 

@@ -10,6 +10,6 @@ class Nationality extends Model
 
     public function getTable()
     {
-        return config('CountrySeeder.nationalities_table_name');
+        return config('country.nationalities.table');
     }
 }
