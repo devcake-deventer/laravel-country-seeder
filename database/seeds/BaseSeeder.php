@@ -4,42 +4,31 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-abstract class BaseSeeder extends Seeder
-{
-    protected abstract function getTable(): string;
+abstract class BaseSeeder extends Seeder {
+	public abstract function configSection(): string;
 
-    protected function devOnly(): array
-    {
-        return [];
-    }
+	public abstract function seeds(): array;
 
-    protected function seeds(): array
-    {
-        return [];
-    }
+	public function run() {
+		foreach ($this->seeds() as $seed) {
+			$table = DB::table(config($this->configSection() . '.table'));
 
-    public function run()
-    {
-        foreach($this->seeds() as $seed) {
-            $table = DB::table($this->getTable());
-
-            if($table->find($seed['id']) === NULL) {
-                $seed['created_at'] = Carbon::now();
-                $seed['updated_at'] = Carbon::now();
-                $table->insert($seed);
-            }
-        }
-
-        if (app()->environment(['dev', 'development', 'local'])) {
-            foreach($this->devOnly() as $seed) {
-                $table = DB::table($this->getTable());
-    
-                if($table->find($seed['id']) === NULL) {
-                    $seed['created_at'] = Carbon::now();
-                    $seed['updated_at'] = Carbon::now();
-                    $table->insert($seed);
-                }
-            }
-        }
-    }
+			if ($table->find($seed['id']) === NULL) {
+				$entity = [
+					'id' => $seed['id'],
+					config($this->configSection() . '.columns.code') => $seed['code'],
+					config($this->configSection() . '.columns.name') => $seed['name'],
+					'created_at' => Carbon::now(),
+					'updated_at' => Carbon::now(),
+				];
+				$table->insert($entity);
+			} else if (config($this->configSection() . '.sync')) {
+				$entity = $table->find($seed['id']);
+				$entity->{config($this->configSection() . '.columns.code')} = $seed['code'];
+				$entity->{config($this->configSection() . '.columns.name')} = $seed['name'];
+				$entity->updated_at = Carbon::now();
+				$table->update((array)$entity);
+			}
+		}
+	}
 }
